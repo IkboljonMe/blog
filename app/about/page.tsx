@@ -10,7 +10,6 @@ export const metadata = {
 
 export default function About() {
   const author = allAuthors.find((p) => p.slug === 'about')
-  console.log(author, allAuthors, 'AUTHOR')
 
   if (!author) {
     return null
