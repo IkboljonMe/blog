@@ -1,14 +1,14 @@
-import Image from '@/components/Image';
-import type { Authors } from 'contentlayer/generated';
-import { ReactNode } from 'react';
+import Image from '@/components/Image'
+import type { Authors } from 'contentlayer/generated'
+import { ReactNode } from 'react'
 
 interface Props {
-  children: ReactNode;
-  content: Omit<Authors, '_id' | '_raw' | 'body'>;
+  children: ReactNode
+  content: Omit<Authors, '_id' | '_raw' | 'body'>
 }
 
 export default function AuthorLayout({ children, content }: Props) {
-  const { avatar, occupation, company } = content;
+  const { avatar, occupation, company } = content
 
   return (
     <div className="pt-8">
@@ -29,9 +29,9 @@ export default function AuthorLayout({ children, content }: Props) {
           />
         </div>
       </div>
-      <div className="prose max-w-none pb-8 text-justify text-sm dark:prose-dark md:text-lg xl:col-span-2">
+      <div className="dark:prose-dark prose max-w-none pb-8 text-justify text-sm md:text-lg xl:col-span-2">
         {children}
       </div>
     </div>
-  );
+  )
 }

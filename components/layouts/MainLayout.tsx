@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
-import SectionContainer from '../SectionContainer';
+import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
+import SectionContainer from '../SectionContainer'
 
 interface Props {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export default function MainLayout({ children }: Props) {
@@ -13,7 +13,7 @@ export default function MainLayout({ children }: Props) {
     hidden: { opacity: 0, x: -200 },
     enter: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: 0 },
-  };
+  }
 
   return (
     <SectionContainer>
@@ -29,5 +29,5 @@ export default function MainLayout({ children }: Props) {
         {children}
       </motion.main>
     </SectionContainer>
-  );
+  )
 }

@@ -1,32 +1,72 @@
-import Link from './Link'
-import siteMetadata from '@/data/siteMetadata'
-import SocialIcon from '@/components/social-icons'
+import siteMetadata from 'content/siteMetadata';
+import Link from 'next/link';
+import { Suspense } from 'react';
+import { AiFillLinkedin } from 'react-icons/ai';
+import { FaGithub, FaSpotify, FaSteam, FaTwitter } from 'react-icons/fa';
+import SectionContainer from './SectionContainer';
+import NowPlaying from './Spotify/NowPlaying';
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="mt-16 flex flex-col items-center">
-        <div className="mb-3 flex space-x-4">
-          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
-          <SocialIcon kind="github" href={siteMetadata.github} size={6} />
-          <SocialIcon kind="facebook" href={siteMetadata.facebook} size={6} />
-          <SocialIcon kind="youtube" href={siteMetadata.youtube} size={6} />
-          <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size={6} />
-          <SocialIcon kind="twitter" href={siteMetadata.twitter} size={6} />
+    <SectionContainer>
+      <footer>
+        <div className="mb-0 flex flex-col justify-start space-y-1.5 space-x-0 py-10 text-gray-500 dark:text-gray-400">
+          <Suspense fallback="loading...">
+            <NowPlaying />
+          </Suspense>
+          <div className="flex flex-col items-center space-y-2 text-sm sm:flex-row sm:justify-between sm:text-base">
+            <ul className="flex space-x-2">
+              <li>{`© ${new Date().getFullYear()}`}</li>
+              <li>{` • `}</li>
+              <li>
+                <Link href="/">{siteMetadata.title}</Link>
+              </li>
+            </ul>
+            <ul className="flex cursor-pointer items-center space-x-5">
+              <li>
+                <a
+                  href={siteMetadata.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="linkedin"
+                >
+                  <AiFillLinkedin className="sm:text-lg" />
+                </a>
+              </li>
+              <li>
+                <a href={siteMetadata.github} target="_blank" rel="noreferrer" aria-label="github">
+                  <FaGithub className="sm:text-lg" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteMetadata.twitter}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="twitter"
+                >
+                  <FaTwitter className="sm:text-lg" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteMetadata.spotify}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="spotify"
+                >
+                  <FaSpotify className="sm:text-lg" />
+                </a>
+              </li>
+              <li>
+                <a href={siteMetadata.steam} target="_blank" rel="noreferrer" aria-label="steam">
+                  <FaSteam className="sm:text-lg" />
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>{siteMetadata.author}</div>
-          <div>{` • `}</div>
-          <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>{` • `}</div>
-          <Link href="/">{siteMetadata.title}</Link>
-        </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
-            Tailwind Nextjs Theme
-          </Link>
-        </div>
-      </div>
-    </footer>
-  )
+      </footer>
+    </SectionContainer>
+  );
 }

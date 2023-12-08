@@ -3,15 +3,16 @@
   "version": "2.1.0",
   "private": true,
   "scripts": {
-    "start": "next dev",
+    "start": "contentlayer dev & next dev",
     "dev": "cross-env INIT_CWD=$PWD next dev",
-    "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
+    "build": "next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts"
   },
   "dependencies": {
     "@analytics/google-analytics": "^1.0.7",
+    "@dlarroder/playground": "^1.10.0",
     "@fontsource/mukta": "^5.0.17",
     "@next/bundle-analyzer": "14.0.3",
     "@studio-freight/react-lenis": "^0.0.38",
@@ -19,6 +20,8 @@
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/analytics": "^1.1.1",
     "autoprefixer": "^10.4.13",
+    "classnames": "^2.3.2",
+    "cmdk": "^0.2.0",
     "contentlayer": "0.3.4",
     "esbuild": "0.18.11",
     "framer-motion": "^10.16.12",
@@ -44,6 +47,7 @@
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
+    "tailwind-scrollbar": "^3.0.5",
     "tailwindcss": "^3.3.3",
     "unist-util-visit": "^4.1.0"
   },
