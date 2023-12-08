@@ -6809,6 +6809,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gsap@npm:^3.12.3":
+  version: 3.12.3
+  resolution: "gsap@npm:3.12.3"
+  checksum: 871e8ee518ed87c62d33d8865e059e690dc9e9978e00574b6d0efb4ad30359c4b3a2e757143b1508e749b38e43ad073827f7efad0458408c06a87d4136ffd896
+  languageName: node
+  linkType: hard
+
 "gzip-size@npm:^6.0.0":
   version: 6.0.0
   resolution: "gzip-size@npm:6.0.0"
@@ -11847,6 +11854,7 @@ __metadata:
     framer-motion: ^10.16.12
     github-slugger: ^1.4.0
     gray-matter: ^4.0.2
+    gsap: ^3.12.3
     husky: ^8.0.0
     image-size: 1.0.0
     lint-staged: ^13.0.0
@@ -11875,6 +11883,7 @@ __metadata:
     tailwindcss: ^3.3.3
     typescript: ^5.1.3
     unist-util-visit: ^4.1.0
+    use-breakpoint: ^4.0.1
   languageName: unknown
   linkType: soft
 
@@ -12424,6 +12433,16 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
+  languageName: node
+  linkType: hard
+
+"use-breakpoint@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "use-breakpoint@npm:4.0.1"
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: fcbe209c31bcd18d17e7e22a6dc04c392b6a3aac48aa2275d03c15c1276fcda8b3b9d6b7e12a94ddf0023f8fd31081b915a9cb46e670076fa8ef9e38c77834e4
   languageName: node
   linkType: hard
 
