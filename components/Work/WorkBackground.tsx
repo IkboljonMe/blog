@@ -4,5 +4,5 @@ export function WorkBackground() {
       <div className="h-[30vh] bg-black lg:h-auto"></div>
       <div className="h-[70vh] bg-white lg:h-auto"></div>
     </div>
-  );
+  )
 }

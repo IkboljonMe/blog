@@ -1,10 +1,10 @@
-import { WorkProps } from './WorkRight';
+import { WorkProps } from './WorkRight'
 
 export function WorkLeft({ children, progress }: WorkProps) {
-  let translateY = Math.max(0, 50 - progress * 3 * 50);
+  let translateY = Math.max(0, 50 - progress * 3 * 50)
 
   if (progress > 0.85) {
-    translateY = Math.max(-50, -(progress - 0.85) * 2 * 50);
+    translateY = Math.max(-50, -(progress - 0.85) * 2 * 50)
   }
 
   return (
@@ -14,5 +14,5 @@ export function WorkLeft({ children, progress }: WorkProps) {
     >
       <div className="leading-10 text-white">{children}</div>
     </div>
-  );
+  )
 }

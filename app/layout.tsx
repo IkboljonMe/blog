@@ -10,7 +10,7 @@ import LenisProvider from '@/components/Providers/LenisProvider'
 import ThemeProvider from '@/components/Providers/ThemeProvider'
 
 export const metadata = {
-  title: "Ikboljon Abdurasulov",
+  title: 'Ikboljon Abdurasulov',
   description: 'I build things for the web.',
 }
 

@@ -1,29 +1,29 @@
-'use client';
+'use client'
 
-import classNames from 'classnames';
-import headerNavLinks from 'content/headerNavLinks';
-import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import classNames from 'classnames'
+import headerNavLinks from 'content/headerNavLinks'
+import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export default function MobileNav() {
-  const pathName = usePathname();
-  const [navShow, setNavShow] = useState(false);
+  const pathName = usePathname()
+  const [navShow, setNavShow] = useState(false)
 
   const variants = {
     enter: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: '100vw' },
-  };
+  }
 
   useEffect(() => {
     if (navShow) {
       // Prevent scrolling
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto'
     }
-  }, [navShow]);
+  }, [navShow])
 
   return (
     <div className="sm:hidden">
@@ -58,7 +58,7 @@ export default function MobileNav() {
             'fixed inset-0 z-20 h-full w-full bg-white opacity-95 dark:bg-black'
           )}
         >
-          <header className="flex justify-end py-5 px-4">
+          <header className="flex justify-end px-4 py-5">
             <button
               type="button"
               aria-label="toggle modal"
@@ -93,7 +93,7 @@ export default function MobileNav() {
               </Link>
             </div>
             {headerNavLinks.map(({ title, href }) => {
-              const active = pathName?.includes(href);
+              const active = pathName?.includes(href)
 
               return (
                 <div key={title} className="px-12 py-4">
@@ -109,11 +109,11 @@ export default function MobileNav() {
                     {title}
                   </Link>
                 </div>
-              );
+              )
             })}
           </nav>
         </motion.div>
       </AnimatePresence>
     </div>
-  );
+  )
 }

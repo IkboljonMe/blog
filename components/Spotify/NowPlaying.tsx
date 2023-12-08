@@ -1,22 +1,22 @@
-import { getNowPlaying } from '@/lib/spotify';
-import AnimatedBars from './AnimatedBars';
-import { Artist, NowPlayingSong } from './types';
+import { getNowPlaying } from '@/lib/spotify'
+import AnimatedBars from './AnimatedBars'
+import { Artist, NowPlayingSong } from './types'
 
 async function fetchNowPlaying(): Promise<NowPlayingSong | null> {
   try {
-    const response = await getNowPlaying();
+    const response = await getNowPlaying()
 
     if (response.status === 204 || response.status > 400) {
-      return null;
+      return null
     }
 
-    const song = await response.json();
-    const isPlaying = song.is_playing;
-    const title = song.item.name;
-    const artist = song.item.artists.map((artist: Artist) => artist.name).join(', ');
-    const album = song.item.album.name;
-    const albumImageUrl = song.item.album.images[0].url;
-    const songUrl = song.item.external_urls.spotify;
+    const song = await response.json()
+    const isPlaying = song.is_playing
+    const title = song.item.name
+    const artist = song.item.artists.map((artist: Artist) => artist.name).join(', ')
+    const album = song.item.album.name
+    const albumImageUrl = song.item.album.images[0].url
+    const songUrl = song.item.external_urls.spotify
 
     return {
       album,
@@ -25,18 +25,18 @@ async function fetchNowPlaying(): Promise<NowPlayingSong | null> {
       isPlaying,
       songUrl,
       title,
-    };
+    }
   } catch (e) {
     if (e instanceof Error) {
-      console.error(e.message);
+      console.error(e.message)
     }
   }
 
-  return null;
+  return null
 }
 
 export default async function NowPlaying() {
-  const nowPlaying = await fetchNowPlaying();
+  const nowPlaying = await fetchNowPlaying()
 
   if (!nowPlaying?.songUrl || !nowPlaying.title || !nowPlaying.artist) {
     return (
@@ -53,7 +53,7 @@ export default async function NowPlaying() {
           <p className="text-gray-500 dark:text-gray-300">Spotify</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -74,5 +74,5 @@ export default async function NowPlaying() {
         </p>
       </div>
     </div>
-  );
+  )
 }

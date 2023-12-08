@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import Tag from '@/components/Tag';
-import { CoreContent } from '@/lib/utils/contentlayer';
-import type { Blog } from 'contentlayer/generated';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import Tag from '@/components/Tag'
+import { CoreContent } from '@/lib/utils/contentlayer'
+import type { Blog } from 'contentlayer/generated'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export interface PostCardProps {
-  posts: CoreContent<Blog>[];
-  showTags?: boolean;
+  posts: CoreContent<Blog>[]
+  showTags?: boolean
 }
 
 export default function PostCard({ posts, showTags = true }: PostCardProps) {
@@ -46,5 +46,5 @@ export default function PostCard({ posts, showTags = true }: PostCardProps) {
         </motion.li>
       ))}
     </ul>
-  );
+  )
 }

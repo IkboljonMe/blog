@@ -1,42 +1,42 @@
-import { MDXLayoutRenderer } from '@/components/MDXComponents';
-import PageTitle from '@/components/PageTitle';
-import ScrollProgressBar from '@/components/ScrollProgressBar';
-import PostLayout from '@/layouts/MDX/PostLayout';
-import MainLayout from '@/layouts/MainLayout';
-import { coreContent, formatBlogLink, sortedBlogPost } from '@/lib/utils/contentlayer';
-import { allBlogs } from 'contentlayer/generated';
-import { Metadata } from 'next';
+import { MDXLayoutRenderer } from '@/components/MDXComponents'
+import PageTitle from '@/components/PageTitle'
+import ScrollProgressBar from '@/components/ScrollProgressBar'
+import PostLayout from '@/layouts/MDX/PostLayout'
+import MainLayout from '@/layouts/MainLayout'
+import { coreContent, formatBlogLink, sortedBlogPost } from '@/lib/utils/contentlayer'
+import { allBlogs } from 'contentlayer/generated'
+import { Metadata } from 'next'
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string }
 }): Promise<Metadata> {
-  const slug = params.slug;
-  const post = allBlogs.find((p) => p.slug === slug);
+  const slug = params.slug
+  const post = allBlogs.find((p) => p.slug === slug)
 
   if (!post) {
-    return {};
+    return {}
   }
 
   return {
     title: post.title,
     description: post.summary,
-  };
+  }
 }
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
-  const sortedPosts = sortedBlogPost(allBlogs);
+  const slug = params.slug
+  const sortedPosts = sortedBlogPost(allBlogs)
 
-  const post = sortedPosts.find((p) => p.slug === slug);
-  const author = post?.author || ['default'];
+  const post = sortedPosts.find((p) => p.slug === slug)
+  const author = post?.author || ['default']
 
-  const postIndex = sortedPosts.findIndex((p) => p.slug === slug);
-  const prevContent = sortedPosts[postIndex + 1] || null;
-  const prev = prevContent ? coreContent(prevContent) : null;
-  const nextContent = sortedPosts[postIndex - 1] || null;
-  const next = nextContent ? coreContent(nextContent) : null;
+  const postIndex = sortedPosts.findIndex((p) => p.slug === slug)
+  const prevContent = sortedPosts[postIndex + 1] || null
+  const prev = prevContent ? coreContent(prevContent) : null
+  const nextContent = sortedPosts[postIndex - 1] || null
+  const next = nextContent ? coreContent(nextContent) : null
 
   return (
     <>
@@ -58,5 +58,5 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         )}
       </MainLayout>
     </>
-  );
+  )
 }

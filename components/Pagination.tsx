@@ -1,13 +1,13 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 interface Props {
-  totalPages: number;
-  currentPage: number;
+  totalPages: number
+  currentPage: number
 }
 
 export default function Pagination({ totalPages, currentPage }: Props) {
-  const prevPage = currentPage - 1 > 0;
-  const nextPage = currentPage + 1 <= totalPages;
+  const prevPage = currentPage - 1 > 0
+  const nextPage = currentPage + 1 <= totalPages
 
   return (
     <div className="space-y-2 md:space-y-5">
@@ -40,5 +40,5 @@ export default function Pagination({ totalPages, currentPage }: Props) {
         )}
       </nav>
     </div>
-  );
+  )
 }

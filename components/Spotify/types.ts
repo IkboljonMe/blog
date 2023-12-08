@@ -1,21 +1,21 @@
 export type Artist = {
-  id: string;
-  name: string;
-  type: string;
-  href: string;
-};
+  id: string
+  name: string
+  type: string
+  href: string
+}
 
-export type TrackInfo = { artists: Artist[]; external_urls: { spotify: string }; name: string };
+export type TrackInfo = { artists: Artist[]; external_urls: { spotify: string }; name: string }
 
 export type Song = {
-  songUrl: string;
-  artist: string;
-  title: string;
-};
+  songUrl: string
+  artist: string
+  title: string
+}
 
 export type TopTracks = {
-  tracks: Song[];
-};
+  tracks: Song[]
+}
 
 export const nowPlayingEmptyState: NowPlayingSong = {
   album: '',
@@ -24,13 +24,13 @@ export const nowPlayingEmptyState: NowPlayingSong = {
   isPlaying: false,
   songUrl: '',
   title: '',
-};
+}
 
 export type NowPlayingSong = {
-  album: string;
-  albumImageUrl: string;
-  artist: string;
-  isPlaying: boolean;
-  songUrl: string;
-  title: string;
-};
+  album: string
+  albumImageUrl: string
+  artist: string
+  isPlaying: boolean
+  songUrl: string
+  title: string
+}

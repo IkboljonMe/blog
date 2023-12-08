@@ -1,9 +1,9 @@
-import { BlogLink } from '@/lib/utils/contentlayer';
-import Link from 'next/link';
+import { BlogLink } from '@/lib/utils/contentlayer'
+import Link from 'next/link'
 
 interface PostNavigationProps {
-  prev?: BlogLink;
-  next?: BlogLink;
+  prev?: BlogLink
+  next?: BlogLink
 }
 
 export default function PostNavigation({ prev, next }: PostNavigationProps) {
@@ -36,5 +36,5 @@ export default function PostNavigation({ prev, next }: PostNavigationProps) {
         )}
       </div>
     </div>
-  );
+  )
 }
