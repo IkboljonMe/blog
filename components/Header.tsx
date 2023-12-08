@@ -19,15 +19,12 @@ export default function Header() {
           <div>
             <Link
               href="/"
-              className={classNames(
-                'horizontal-underline hidden text-3xl font-extrabold sm:block',
-                {
-                  'horizontal-underline-active': pathName === '/',
-                }
-              )}
+              className={classNames(' hidden text-3xl font-extrabold sm:block', {
+                'horizontal-underline-active': pathName === '/',
+              })}
               aria-label="d."
             >
-              d.
+              Ikboljon<span className="underline-magical">Me</span>
             </Link>
           </div>
           <div className="flex items-center space-x-3 text-base leading-5">
