@@ -1,30 +1,31 @@
-import ListLayout from '@/layouts/ListLayoutWithTags'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
+import ListLayout from '@/layouts/MDX/ListLayout'
+import MainLayout from '@/layouts/MainLayout'
+import { sortedBlogPost } from '@/lib/utils/contentlayer'
+import { POSTS_PER_PAGE } from '@/types/default'
 import { allBlogs } from 'contentlayer/generated'
-import { genPageMetadata } from 'app/seo'
 
-const POSTS_PER_PAGE = 5
+export const metadata = {
+  title: 'Blog - IkboljonMe',
+  description: 'My Blogs - Ikboljon Abdurasulov',
+}
 
-export const metadata = genPageMetadata({ title: 'Blog' })
-
-export default function BlogPage() {
-  const posts = allCoreContent(sortPosts(allBlogs))
-  const pageNumber = 1
-  const initialDisplayPosts = posts.slice(
-    POSTS_PER_PAGE * (pageNumber - 1),
-    POSTS_PER_PAGE * pageNumber
-  )
+export default function Blog() {
+  const activePosts = allBlogs.filter((p) => p.draft === false)
+  const posts = sortedBlogPost(activePosts)
+  const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
   const pagination = {
-    currentPage: pageNumber,
+    currentPage: 1,
     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
   }
 
   return (
-    <ListLayout
-      posts={posts}
-      initialDisplayPosts={initialDisplayPosts}
-      pagination={pagination}
-      title="All Posts"
-    />
+    <MainLayout>
+      <ListLayout
+        posts={posts}
+        initialDisplayPosts={initialDisplayPosts}
+        pagination={pagination}
+        title="Blog"
+      />
+    </MainLayout>
   )
 }
