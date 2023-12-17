@@ -5,21 +5,23 @@ import { Song, TrackInfo } from './types'
 async function fetchTopTracks(): Promise<Song[] | null> {
   try {
     const response = await getTopTracks()
-    const { items } = await response.json()
-
+    const { items } = await response
     const tracks = items.slice(0, 5).map((track: TrackInfo) => ({
       artist: track.artists.map((_artist) => _artist.name).join(', '),
       songUrl: track.external_urls.spotify,
       title: track.name,
     }))
-
-    return tracks
+    console.log(items, 'ITEMS')
+    if (Object.keys(tracks).length && tracks) {
+      return tracks
+    } else {
+      return null
+    }
   } catch (e) {
     if (e instanceof Error) {
       console.error(e.message)
     }
   }
-
   return null
 }
 
