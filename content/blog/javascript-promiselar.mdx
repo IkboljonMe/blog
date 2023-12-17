@@ -1,0 +1,160 @@
+---
+title: 'JavaScript Promise va Async/Await'
+date: '2023-12-17'
+tags: ['JavaScript', 'ReactJs', 'Promises', 'Async/Await']
+draft: false
+author: 'Ikboljon Abdurasulov'
+summary: "JavaScriptdagi Promise va qanday qilib 'Callback Hell' muammosidan qutilish"
+---
+
+## Ushbu postda:
+
+<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
+
+## Promise nima?
+
+Demak Promise o'zi nima, nimage keragi bor? Dasturchi tili bilan tushuntirsam, bir asinxron ishni natijasi serverdan kelguncha(yoki kelmaguncha) kutish. Yanayam chuqurroq tushunish uchun esa, `Javascript Engine` haqida biroz ma'lumotga ega bo'lishimiz lozim. Agar ushbu mavzu qiziq bo'lsa quyidagi izohlar qismida qoldiring😃.
+
+**Promise** quyidagi holatlarda bo'lishi mumkin.
+
+- <em>pending</em>: boshlang'ich holat.
+- <em>fulfilled</em>: bajarilayotgan operatsiya muvafaqiyatli tugaganini bildiradi.
+- <em>rejected</em>: Promise muvafaqiyatsiz qaytarilingani bildiradi.
+
+## Promisening vizual ko'rinishi
+
+![image](/static/blog/promises.webp)
+
+## Async/Await o'zi nima?
+
+`Ecmascript` tomonidan qo'shilgan yangi `keyword`lar. Asosiy maqsadi - oldingi `callback hall` muammosiga yechim.
+
+## `Callback hell` atamasi
+
+```js
+const doSomeFetch = fetch('/some-api')
+
+doSomeFetch()
+  .then((data) => doAnotherFetch(data))
+  .then((result) => doAnoterFetch(result))
+  .then((outcome) => probablyLastFetch(outcome))
+```
+
+Ammo, haqiqiy hayotdaigi(dasturchilar ishlatadigan) ko'rinishi:
+
+```js
+doSomeFetch().then((data) => {
+  doAnotherFetch(data)
+    .then((result) => {
+      doAnoterFetch(data, result)
+        .then((outcome) => {
+          probablyLastFetch(data, result, outcome)
+            .then((fin) => {
+              // Ah Finally!
+            })
+            .catch((e) => {
+              handleError(e)
+            })
+        })
+        .catch((e) => {
+          handleError(e)
+        })
+    })
+    .catch((e) => {
+      handleError(e)
+    })
+})
+```
+
+## Async/Await bizga 'minimal' kod yozishimizga yordam beradi
+
+```js
+const data = await doSomeFetch()
+const result = await doAnotherFetch(data)
+const outcome = await doAnoterFetch(data, result)
+const fin = await probablyLastFetch(data, result, outcome)
+```
+
+O'ta go'zal😁, ancha tushunarli va qisqa. Endi qanday qilib `Error`larni aniqlashni ko'rib o'tsak:
+
+```js
+let data, result, outcome, fin
+
+try {
+  data = await doSomeFetch()
+} catch (e) {
+  handleError(e)
+}
+
+try {
+  result = await doAnotherFetch(data)
+} catch (e) {
+  handleError(e)
+}
+
+try {
+  outcome = await doAnoterFetch(data, result)
+} catch (e) {
+  handleError(e)
+}
+
+try {
+  fin = await probablyLastFetch(data, result, outcome)
+} catch (e) {
+  handleError(e)
+}
+```
+
+Vaziyatga qarab faqat bitta `try` va `catch` blogini ishlatsa bo'ladi, agarda sizga har bir promise `Error` i kerak bo'lmasa
+
+Qisqa va tushunarli:
+
+```js
+try {
+  const data = await doSomeFetch()
+  const result = await doAnotherFetch(data)
+  const outcome = await doAnoterFetch(data, result)
+  const fin = await probablyLastFetch(data, result, outcome)
+} catch (e) {
+  handleError(e)
+}
+```
+
+Agar har bir Promisega individual `error` qaytarmoqchi bo'lsak, unda `catch` metodidan foydalanamiz:
+
+```js
+const data = await doSomeFetch().catch(handleError)
+const result = await doAnotherFetch(data).catch(handleError)
+const outcome = await doAnoterFetch(data, result).catch(handleError)
+const fin = await probablyLastFetch(data, result, outcome).catch(handleError)
+```
+
+## Eng optimal ko'rinishi
+
+```js
+export async function fancyFetch(fetcher, ...args) {
+  try {
+    const data = await fetcher(...args)
+    return [data, null]
+  } catch (error) {
+    log(error)
+    return [null, error]
+  }
+}
+```
+
+Biz malumotni `array` shaklda qaytaryapmiz. Chunki biz bu funksiyani avval chaqirib, keyin `destructing` orqali ma;mumotlarni olamiz, yani:
+
+```js
+const [data, dataError] = await fancyFetch(doSomeFetch);
+if(dataError) { // got the error context, do something! }
+
+const [result, resultError] = await fancyFetch(doAnotherFetch, data);
+if(resultError) { // got the error context, do something! }
+
+const [outcome, outcomeError] = await fancyFetch(doAnotherFetch, data, result);
+if(outcomeError) { // got the error context, do something! }
+
+const [fin, finError] = await fancyFetch(probablyLastFetch, data, result, outcome);
+if(finError) { // got the error context, do something! }
+```
