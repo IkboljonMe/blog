@@ -10,7 +10,9 @@ interface RecentPosts {
 
 export default function RecentPosts({ posts }: RecentPosts) {
   const slicedPost = posts.slice(0, MAX_DISPLAY)
-
+  if (!Object.keys(posts).length) {
+    return null
+  }
   return (
     <div className="mt-6">
       <div className="divide-gray-200 dark:divide-gray-700">
