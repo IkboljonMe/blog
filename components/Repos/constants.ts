@@ -1,6 +1,6 @@
-import { Project } from './types'
+import { Repo } from './types'
 
-export const projects: Project[] = [
+export const repos: Repo[] = [
   {
     title: 'Aphex Planner',
     src: 'planner-app.webp',

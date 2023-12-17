@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
-import { Project, ProjectModal } from './types'
+import { Repo, RepoModal } from './types'
 
-interface ProjectModalProps {
-  modal: ProjectModal
-  projects: Project[]
+interface RepoModalProps {
+  modal: RepoModal
+  repos: Repo[]
 }
 
 const scaleAnimation = {
@@ -27,7 +27,7 @@ const scaleAnimation = {
   },
 }
 
-export default function ProjectPreview({ modal, projects }: ProjectModalProps) {
+export default function ProjectPreview({ modal, repos }: RepoModalProps) {
   const { active, index } = modal
   const modalContainer = useRef<HTMLDivElement>(null)
   const cursor = useRef<HTMLDivElement>(null)
@@ -84,8 +84,8 @@ export default function ProjectPreview({ modal, projects }: ProjectModalProps) {
           className="absolute h-full w-full"
           style={{ top: index * -100 + '%', transition: 'top 0.6s cubic-bezier(0.76, 0, 0.24, 1)' }}
         >
-          {projects.map((project, index) => {
-            const { src, color } = project
+          {repos.map((repo, index) => {
+            const { src, color } = repo
             return (
               <div
                 className="flex h-full w-full items-center justify-center"

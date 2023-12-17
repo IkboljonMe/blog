@@ -1,4 +1,4 @@
-export interface Project {
+export interface Repo {
   title: string
   src: string
   color: string
@@ -6,7 +6,7 @@ export interface Project {
   role: string
 }
 
-export interface ProjectModal {
+export interface RepoModal {
   active: boolean
   index: number
 }

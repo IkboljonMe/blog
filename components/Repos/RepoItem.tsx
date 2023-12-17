@@ -1,14 +1,14 @@
-import { ProjectModal } from './types'
+import { RepoModal } from './types'
 
-interface ProjectProps {
+interface RepoProps {
   index: number
   title: string
   url: string
   role: string
-  setModal: (modal: ProjectModal) => void
+  setModal: (modal: RepoModal) => void
 }
 
-export default function ProjectItem({ index, title, url, role, setModal }: ProjectProps) {
+export default function RepoItem({ index, title, url, role, setModal }: RepoProps) {
   return (
     <a
       href={url}
