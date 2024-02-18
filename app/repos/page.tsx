@@ -6,7 +6,7 @@ export const metadata = {
   description: 'My Repos - Ikboljon Abdurasulov',
 }
 
-export default function Page() {
+export default function RepoPage() {
   return (
     <MainLayout>
       <div className="space-y-2 pb-8 pt-6 md:space-y-5 ">

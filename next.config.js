@@ -82,6 +82,8 @@ module.exports = () => {
       ]
     },
     webpack: (config, options) => {
+      config.resolve.alias.canvas = false
+      config.resolve.alias.encoding = false
       config.module.rules.push({
         test: /\.svg$/,
         use: ['@svgr/webpack'],
