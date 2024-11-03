@@ -8,6 +8,8 @@ import CommandPalette from './CommandPalette/CommandPalette'
 import MobileNav from './MobileNav'
 import SectionContainer from './SectionContainer'
 import ThemeSwitch from './ThemeSwitch'
+import LanguageSwitch from './LanguageSwitch'
+
 
 export default function Header() {
   const pathName = usePathname()
@@ -47,7 +49,8 @@ export default function Header() {
                   </Link>
                 )
               })}
-            </div>
+           
+            </div>   <LanguageSwitch/>
             <div className="flex items-center">
               <CommandPalette />
               <ThemeSwitch />

@@ -10,7 +10,6 @@ import LenisProvider from '@/components/Providers/LenisProvider'
 import ThemeProvider from '@/components/Providers/ThemeProvider'
 import { useLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
-
 export const metadata = {
   title: 'Ikboljon Abdurasulov',
   description: 'I build things for the web.',
