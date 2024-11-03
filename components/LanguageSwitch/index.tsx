@@ -1,29 +1,35 @@
-// src/components/LanguageSwitch/index.tsx
-import React, { useState } from 'react';
+"use client";
+import { useLocale } from "next-intl";
+import React, { useEffect, useState } from 'react';
 import LanguageSwitcher from './Switcher';
 
 const LanguageSwitch: React.FC = () => {
+  const initialLocale = useLocale(); // Get the current locale
   const [isLanguageSwitcherOpen, setIsLanguageSwitcherOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('en'); // Default to English
+  const [selectedLanguage, setSelectedLanguage] = useState(initialLocale); // Initialize with the full locale
+
+  useEffect(() => {
+    setSelectedLanguage(initialLocale); // Update if initialLocale changes
+  }, [initialLocale]);
 
   const handleLanguageSelect = (language: string) => {
     setSelectedLanguage(language);
     setIsLanguageSwitcherOpen(false);
+    window.location.reload(); // Reload to apply language change
   };
 
   const handleClose = () => {
     setIsLanguageSwitcherOpen(false);
   };
 
-  // Function to get the flag emoji based on the selected language
   const getFlagEmoji = (language: string) => {
     switch (language) {
       case 'en':
-        return '🇺🇸'; // US flag
+        return '🇺🇸';
       case 'ru':
-        return '🇷🇺'; // Russian flag
+        return '🇷🇺';
       case 'uz':
-        return '🇺🇿'; // Uzbek flag
+        return '🇺🇿';
       default:
         return '🇺🇸'; // Default to US flag
     }
@@ -33,14 +39,15 @@ const LanguageSwitch: React.FC = () => {
     <div className="flex center">
       <div
         className="cursor-pointer"
-        onClick={() => setIsLanguageSwitcherOpen(true)} // Open the switcher when clicked
+        onClick={() => setIsLanguageSwitcherOpen(true)}
       >
         {getFlagEmoji(selectedLanguage)} {/* Display selected language flag */}
       </div>
       {isLanguageSwitcherOpen && (
         <LanguageSwitcher
-          onClose={handleClose} // Pass handleClose to the LanguageSwitcher
+          onClose={handleClose}
           onSelectLanguage={handleLanguageSelect}
+          selectedLanguage={selectedLanguage}
         />
       )}
     </div>

@@ -10,6 +10,8 @@ import LenisProvider from '@/components/Providers/LenisProvider'
 import ThemeProvider from '@/components/Providers/ThemeProvider'
 import { useLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
+import {NextIntlClientProvider} from 'next-intl';
+
 export const metadata = {
   title: 'Ikboljon Abdurasulov',
   description: 'I build things for the web.',
@@ -36,6 +38,7 @@ export default function RootLayout({ children,params }: RootLayoutProps) {
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
       <body className="bg-white text-black antialiased dark:bg-black dark:text-white">
+        <NextIntlClientProvider locale={locale}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
           <LenisProvider>
@@ -45,6 +48,7 @@ export default function RootLayout({ children,params }: RootLayoutProps) {
           <LogRocket />
           <Analytics />
         </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

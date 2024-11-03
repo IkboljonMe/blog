@@ -2,7 +2,7 @@ const { withContentlayer } = require('next-contentlayer');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
-const withNextIntl = require("next-intl/plugin")("./i18n.js");
+const withNextIntl = require("next-intl/plugin")("./i18n/request.ts");
 
 // Define the Next.js configuration
 const nextConfig = {

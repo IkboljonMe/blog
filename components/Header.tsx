@@ -50,7 +50,8 @@ export default function Header() {
                 )
               })}
            
-            </div>   <LanguageSwitch/>
+            </div>
+               <LanguageSwitch/>
             <div className="flex items-center">
               <CommandPalette />
               <ThemeSwitch />
