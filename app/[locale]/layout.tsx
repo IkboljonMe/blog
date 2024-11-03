@@ -8,6 +8,8 @@ import Header from '@/components/Header'
 import LogRocket from '@/components/LogRocket'
 import LenisProvider from '@/components/Providers/LenisProvider'
 import ThemeProvider from '@/components/Providers/ThemeProvider'
+import { useLocale } from 'next-intl'
+import { notFound } from 'next/navigation'
 
 export const metadata = {
   title: 'Ikboljon Abdurasulov',
@@ -16,11 +18,16 @@ export const metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode
+  params: any
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children,params }: RootLayoutProps) {
+  const locale = useLocale();
+  if (params.locale !== locale) {
+    notFound()
+  }
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon.ico" />

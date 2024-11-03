@@ -11,6 +11,7 @@
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts"
   },
   "dependencies": {
+    "next-intl": "2.15.0-beta.3",
     "@analytics/google-analytics": "^1.0.7",
     "@dlarroder/playground": "^1.10.0",
     "@fontsource/mukta": "^5.0.17",
