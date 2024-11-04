@@ -1,19 +1,19 @@
-import Image from 'next/image';
-import { WorkContainer } from './WorkContainer';
-import { WorkLeft } from './WorkLeft';
-import { WorkRight } from './WorkRight';
-import { WorkTile } from './workTiles';
-import { useTranslations } from 'next-intl';
+import Image from 'next/image'
+import { WorkContainer } from './WorkContainer'
+import { WorkLeft } from './WorkLeft'
+import { WorkRight } from './WorkRight'
+import { WorkTile } from './workTiles'
+import { useTranslations } from 'next-intl'
 
 interface WorkContentProps {
-  work: WorkTile; // Ensure WorkTile is defined correctly
-  progress?: number;
+  work: WorkTile// Ensure WorkTile is defined correctly
+  progress?: number
+
 }
 
 export default function WorkContent({ work, progress = 0 }: WorkContentProps) {
-  const { titleKey, descriptionKey, image } = work;
-  const t = useTranslations('Works'); // Fetch translations under the 'Works' namespace
-
+  const { titleKey, descriptionKey, image } = work
+  const t = useTranslations('Works') // Fetch translations under the 'Works' namespace
   return (
     <WorkContainer>
       <WorkLeft progress={progress}>
@@ -30,6 +30,5 @@ export default function WorkContent({ work, progress = 0 }: WorkContentProps) {
         </div>
       </WorkRight>
     </WorkContainer>
-  );
+  )
 }
-
