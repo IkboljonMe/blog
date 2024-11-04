@@ -36,7 +36,8 @@ export default function Hero(): ReactElement {
                 Ikboljon Abdurasulov
               </h1>
               <h2 className="text-3xl font-medium opacity-80 sm:text-6xl md:text-6xl xl:text-7xl">
-              Software Engineer | Back-end Developer | Coding Enthusiast</h2>
+                Software Engineer | Back-end Developer | Coding Enthusiast
+              </h2>
               <Link
                 href="/about"
                 className="underline-magical text-md w-max cursor-pointer sm:text-lg md:text-xl xl:text-2xl"
