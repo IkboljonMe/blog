@@ -1,4 +1,4 @@
-"use client";
+
 import { useLocale } from "next-intl";
 import React, { useEffect, useState } from 'react';
 import LanguageSwitcher from './Switcher';
@@ -12,16 +12,9 @@ const LanguageSwitch: React.FC = () => {
     setSelectedLanguage(initialLocale); // Update if initialLocale changes
   }, [initialLocale]);
 
-  const handleLanguageSelect = (language: string) => {
-    setSelectedLanguage(language);
-    setIsLanguageSwitcherOpen(false);
-    window.location.reload(); // Reload to apply language change
-  };
-
   const handleClose = () => {
     setIsLanguageSwitcherOpen(false);
   };
-
   const getFlagEmoji = (language: string) => {
     switch (language) {
       case 'en':
@@ -46,7 +39,6 @@ const LanguageSwitch: React.FC = () => {
       {isLanguageSwitcherOpen && (
         <LanguageSwitcher
           onClose={handleClose}
-          onSelectLanguage={handleLanguageSelect}
           selectedLanguage={selectedLanguage}
         />
       )}

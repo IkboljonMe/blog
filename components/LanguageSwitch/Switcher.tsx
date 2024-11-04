@@ -1,12 +1,13 @@
 "use client";
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import classNames from 'classnames';
+import { Link, usePathname } from '../../i18n/routing';
+import { IoClose } from "react-icons/io5";
 
-interface LanguageSwitcherProps {
-  onClose: () => void; // Function type for closing the switcher
-  onSelectLanguage: (language: string) => void; // Function type for selecting a language
-  selectedLanguage: string; // Currently selected language
+interface SwitcherProps {
+  onClose: () => void;
+
+  selectedLanguage: string;
 }
 
 // Define an array of languages with their respective flags and labels
@@ -16,36 +17,35 @@ const languages = [
   { code: 'uz', label: 'Uzbek', flag: '🇺🇿' },
 ];
 
-const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onClose, onSelectLanguage, selectedLanguage }) => {
-  const router = useRouter(); // Use the router for navigation
-
-  const handleLanguageChange = (language: string) => {
-    onSelectLanguage(language); // Select the language
-    router.push(`/${language}`); // Change the route to the selected language
-  };
+const Switcher: React.FC<SwitcherProps> = ({ onClose, selectedLanguage }) => {
+  const pathname = usePathname(); // Get the current pathname
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
       <button
-        className="absolute top-5 right-5 text-white text-2xl font-bold hover:text-gray-400"
-        onClick={onClose} // Calls the onClose function when clicked
+        className="absolute top-5 right-5 text-white text-3xl font-bold hover:text-gray-400"
+        onClick={onClose}
       >
-        X
+        <IoClose />
       </button>
       <div className="flex flex-col items-start gap-6">
         {languages.map((language) => (
-          <div
-            key={language.code} // Use the language code as the unique key
-            className={classNames("flex items-start gap-3 text-white text-4xl cursor-pointer hover:scale-105 transition-transform", { "bg-gray-800": language.code === selectedLanguage })}
-            onClick={() => handleLanguageChange(language.code)} // Call onSelectLanguage with the language code
+          <Link
+            key={language.code}
+            href={pathname} // Use the current pathname
+            locale={language.code} // Set the locale to the selected language
+            className={classNames("flex items-start gap-3 text-white text-4xl cursor-pointer hover:scale-105 transition-transform", {
+              "bg-gray-800": language.code === selectedLanguage
+            })}
+          
           >
-            <span>{language.flag}</span> {/* Display the flag */}
-            <span>{language.label}</span> {/* Display the language label */}
-          </div>
+            <span>{language.flag}</span>
+            <span>{language.label}</span>
+          </Link>
         ))}
       </div>
     </div>
   );
 };
 
-export default LanguageSwitcher;
+export default Switcher;
