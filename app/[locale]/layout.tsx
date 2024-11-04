@@ -19,7 +19,7 @@ export const metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode
-  params: any
+  params: { locale: string }
 }
 
 export default function RootLayout({ children, params }: RootLayoutProps) {

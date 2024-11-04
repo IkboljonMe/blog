@@ -14,6 +14,7 @@ const LanguageSwitch: React.FC = () => {
   const handleClose = () => {
     setIsLanguageSwitcherOpen(false)
   }
+
   const getFlagEmoji = (language: string) => {
     switch (language) {
       case 'en':
@@ -29,7 +30,13 @@ const LanguageSwitch: React.FC = () => {
 
   return (
     <div className="center flex">
-      <div className="cursor-pointer" onClick={() => setIsLanguageSwitcherOpen(true)}>
+      <div
+        className="cursor-pointer"
+        onClick={() => setIsLanguageSwitcherOpen(true)}
+        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setIsLanguageSwitcherOpen(true)}
+        role="button"
+        tabIndex={0} // Makes the div focusable
+      >
         {getFlagEmoji(selectedLanguage)} {/* Display selected language flag */}
       </div>
       {isLanguageSwitcherOpen && (
