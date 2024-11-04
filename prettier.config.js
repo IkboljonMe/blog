@@ -6,6 +6,6 @@ module.exports = {
   useTabs: false,
   trailingComma: 'es5',
   bracketSpacing: true,
-  endOfLine: 'lf', // Set line endings to LF
+  endOfLine: 'auto', // Set line endings to LF
   plugins: ['prettier-plugin-tailwindcss'],
 }

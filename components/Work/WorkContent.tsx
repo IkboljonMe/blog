@@ -6,9 +6,8 @@ import { WorkTile } from './workTiles'
 import { useTranslations } from 'next-intl'
 
 interface WorkContentProps {
-  work: WorkTile// Ensure WorkTile is defined correctly
+  work: WorkTile
   progress?: number
-
 }
 
 export default function WorkContent({ work, progress = 0 }: WorkContentProps) {
