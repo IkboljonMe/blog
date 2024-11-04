@@ -1,7 +1,55 @@
 {
-  "Index": {
-    "title": "Hello world!!",
-    "subtitle": "How is it going?",
-    "alertMessage": "Something went wrong!"
+  "Hero": {
+    "ssr-only": "Hello I'm Ikboljon Abdurasulov, I'm a software developer, and I love building things for the web.",
+    "name":"Ikboljon Abdurasulov",
+    "job":"Software Engineer",
+    "read-more":"Read more about me"
+    
+  },
+  "NavLinks":{
+    "blog":{
+      "href":"/blog",
+      "title":"Blog"
+    },
+    "repos":{
+      "href":"/repos",
+      "title":"Repos"
+    },
+    "about":{
+      "href":"/about",
+      "title":"About"
+    }
+  },
+  "RepoPage":{
+    "popular-repos":"My Popular Repos",
+    "selected-repos":" Here are some of my selected repos worth sharing."
+  },
+  "IntoComponent":{
+    "first":"Without coding, I'm only halfway there",
+    "second":"And coding problems are my playground, where I love to explore and conquer challenges.",
+    "third":"The backend realm is where I feel most at home in my development journey."
+  },
+  "Works":{
+      "workTile1Title": "I've worked on",
+      "workTile1Description": "Here are things",
+      "workTile2Title": "Short URL",
+      "workTile2Description": "I built",
+      "workTile3Title": "UzShop e-commerce",
+      "workTile3Description": "I built",
+      "workTile4Title": "Open Source APIs",
+      "workTile4Description": "I built several"
+  },
+  "RecentPosts":{
+    "recent-posts":"Recent Posts",
+    "read-all-posts":"Read All Post"
+  },
+  "Spotify":{
+    "not-playing":"Not Playing"
+  },
+  "Blog":{
+    "previous-blog":"Previous Blog",
+    "next-blog":"Next Blog",
+    "articles": "Articles",
+    "search-articles":"Search articles"
   }
 }

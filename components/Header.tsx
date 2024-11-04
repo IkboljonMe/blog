@@ -1,9 +1,9 @@
 'use client'
 
 import classNames from 'classnames'
-import headerNavLinks from 'content/headerNavLinks'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import CommandPalette from './CommandPalette/CommandPalette'
 import MobileNav from './MobileNav'
 import SectionContainer from './SectionContainer'
@@ -12,6 +12,14 @@ import LanguageSwitch from './LanguageSwitch'
 
 export default function Header() {
   const pathName = usePathname()
+  const t = useTranslations('NavLinks') // Access NavLinks translations
+
+  // Define links directly with translation keys
+  const navLinks = [
+    { href: t('blog.href'), title: t('blog.title') },
+    { href: t('repos.href'), title: t('repos.title') },
+    { href: t('about.href'), title: t('about.title') },
+  ]
 
   return (
     <SectionContainer>
@@ -30,7 +38,7 @@ export default function Header() {
           </div>
           <div className="flex items-center space-x-3 text-base leading-5">
             <div className="hidden space-x-5 sm:flex">
-              {headerNavLinks.map(({ title, href }) => {
+              {navLinks.map(({ title, href }) => {
                 const active = pathName?.includes(href)
                 return (
                   <Link

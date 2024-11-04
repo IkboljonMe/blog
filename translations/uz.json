@@ -1,7 +1,54 @@
 {
-  "Index": {
-    "title": "Hei maailma!!",
-    "subtitle": "Kuis menee?",
-    "alertMessage": "Jotaki meni ny pielee!"
-  }
+  "Hero": {
+    "ssr-only": "Asssalomu alaykum!",
+    "name": "Ikboljon Abdurasulov",
+    "job": "Software Engineer",
+    "read-more": "Men haqimda ko‘proq o‘qing"
+  },
+  "NavLinks": {
+    "blog": {
+      "href": "/blog",
+      "title": "Maqolalar"
+    },
+    "repos": {
+      "href": "/repos",
+      "title": "Repolar"
+    },
+    "about": {
+      "href": "/men-haqimda",
+      "title": "Men haqimda"
+    }
+  },
+  "RepoPage": {
+    "popular-repos": "Yulduzli repolarim",
+    "selected-repos": "Albatta sizga yoqadi degan umiddaman :)"
+  },
+  "IntoComponent": {
+    "first": "Kod yozmasdan, men faqat yarmidaman",
+    "second": "Va kodlash muammolari mening o'yin maydonimdir, u yerda men muammolarni kashf etishni va engishga juda yoqtiraman.",
+    "third": "Backend sohasida men dasturlash sayohatimda eng ko'p o'zimni qulay his qilaman."
+  },
+  "Works": {
+    "workTile1Title": "Men ishlagan projectlar",
+    "workTile1Description": "Bu yerda ishlarim",
+    "workTile2Title": "Qisqa URL",
+    "workTile2Description": "Uzun formatdagi URLlarni kichraytirish",
+    "workTile3Title": "UzShop elektron savdo",
+    "workTile3Description": "Online shopping",
+    "workTile4Title": "Ochiq manbali APIlar",
+    "workTile4Description": "REST sorovlar"
+  },
+  "RecentPosts": {
+    "recent-posts": "So'nggi postlar",
+    "read-all-posts": "Barcha postlarni o'qish"
+  },
+  "Spotify": {
+    "not-playing": "Pauza"
+  },
+    "Blog": {
+      "previous-blog": "Oldingi maqola",
+      "next-blog": "Keyingi maqola",
+      "articles": "Maqolalar",
+      "search-articles": "Maqolalarni qidirish"
+    }
 }

@@ -1,7 +1,7 @@
 import { getNowPlaying } from '@/lib/spotify'
 import AnimatedBars from './AnimatedBars'
+import { getTranslations } from 'next-intl/server'
 import { Artist, NowPlayingSong } from './types'
-
 async function fetchNowPlaying(): Promise<NowPlayingSong | null> {
   try {
     const response = await getNowPlaying()
@@ -36,6 +36,7 @@ async function fetchNowPlaying(): Promise<NowPlayingSong | null> {
 }
 
 export default async function NowPlaying() {
+  const t = await getTranslations('Spotify')
   const nowPlaying = await fetchNowPlaying()
 
   if (!nowPlaying?.songUrl || !nowPlaying.title || !nowPlaying.artist) {

@@ -11,6 +11,7 @@ import ThemeProvider from '@/components/Providers/ThemeProvider'
 import { useLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
+import { useMessages } from 'next-intl'
 
 export const metadata = {
   title: 'Ikboljon Abdurasulov',
@@ -24,6 +25,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children, params }: RootLayoutProps) {
   const locale = useLocale()
+  const messages = useMessages()
   if (params.locale !== locale) {
     notFound()
   }
@@ -38,7 +40,7 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
       <body className="bg-white text-black antialiased dark:bg-black dark:text-white">
-        <NextIntlClientProvider locale={locale}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Header />
             <LenisProvider>

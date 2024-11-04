@@ -2,6 +2,7 @@
 
 import { useLenis } from '@studio-freight/react-lenis'
 import { useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 function opacityForBlock(sectionProgress: number, blockNumber: number) {
   const progress = sectionProgress - blockNumber
@@ -15,7 +16,7 @@ function opacityForBlock(sectionProgress: number, blockNumber: number) {
 
 export default function Intro() {
   const [scrollY, setScrollY] = useState(0)
-
+  const t = useTranslations('IntoComponent')
   useLenis(({ scroll }) => {
     setScrollY(scroll)
   })
@@ -45,19 +46,19 @@ export default function Intro() {
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-10 py-24 text-4xl font-semibold tracking-tight md:py-28 md:text-6xl lg:px-20 lg:py-3 lg:text-7xl">
         <div className="leading-[1.15]">
           <div className="introText" style={{ opacity: opacityForBlock(progress, 0) }}>
-            Without coding, I'm only halfway there.
+            {t('first')}
           </div>
           <span
             className="introText inline-block after:content-['_']"
             style={{ opacity: opacityForBlock(progress, 1) }}
           >
-            And coding problems are my playground, where I love to explore and conquer challenges.
+            {t('second')}
           </span>
           <span
             className="introText inline-block"
             style={{ opacity: opacityForBlock(progress, 2) }}
           >
-            The backend realm is where I feel most at home in my development journey.
+            {t('third')}
           </span>
         </div>
       </div>

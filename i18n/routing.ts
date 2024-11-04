@@ -6,17 +6,16 @@ export const routing = defineRouting({
   defaultLocale: 'en',          // Set default locale to English
   pathnames: {
     '/': '/',
-    '/about': {
-      en: '/about',
-      ru: '/о-нас',    // Russian path
-      uz: '/haqida'    // Uzbek path
-    },  
-    '/contact': {
-      en: '/contact',
-      ru: '/контакт',  // Russian path
-      uz: '/aloqa'     // Uzbek path
-    }
-    // Add more paths as needed with translations
+    // '/about': {
+    //   en: '/about',
+    //   ru: '/о-нас',    // Russian path
+    //   uz: '/haqida'    // Uzbek path
+    // },  
+    // '/blog': {
+    //   en: '/blog',
+    //   ru: '/rublog',  // Russian path
+    //   uz: '/uzblog'     // Uzbek path
+    // }
   }
 });
 
