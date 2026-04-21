@@ -1,7 +1,5 @@
 import { ScrollProvider } from '@/components/Providers/ScrollProvider'
 import Hero from '@/components/Hero'
-import Intro from '@/components/Intro'
-import Works from '@/components/Work/Works'
 import SectionContainer from '@/components/SectionContainer'
 import RecentPosts from '@/components/RecentPosts'
 import { Suspense } from 'react'
@@ -16,8 +14,6 @@ export default async function Page() {
   return (
     <ScrollProvider>
       <Hero />
-      <Intro />
-      <Works />
       <SectionContainer>
         <RecentPosts posts={posts} />
         <Suspense fallback="loading..">

@@ -7,7 +7,7 @@ interface PostNavigationProps {
 }
 
 export default function PostNavigation({ prev, next }: PostNavigationProps) {
-  const t = useTranslations()
+  const t = useTranslations('Blog')
   return (
     <div className="grid grid-rows-2 gap-3 pt-4 sm:grid-cols-2 sm:pt-6">
       <div>
