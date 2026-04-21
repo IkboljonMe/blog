@@ -18,6 +18,7 @@ export default function About() {
 
   return (
     <MainLayout>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <AuthorLayout content={data as any}>
         <MDXRemote source={content} components={components} />
       </AuthorLayout>

@@ -32,7 +32,7 @@ const LanguageSwitch: React.FC = () => {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 font-semibold tracking-wide text-gray-900 dark:text-gray-100 hover:text-primary-500"
+          className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 font-semibold tracking-wide text-gray-900 hover:text-primary-500 dark:text-gray-100"
           id="menu-button"
           aria-expanded="true"
           aria-haspopup="true"
