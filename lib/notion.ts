@@ -67,11 +67,15 @@ async function pageToPost(page: any): Promise<NotionPost> {
   const images: string[] = coverUrl ? [coverUrl] : []
 
   // Fetch the page body from Notion blocks
+  console.log(`Fetching blocks for page: ${page.id}`)
   const mdBlocks = await n2m.pageToMarkdown(page.id)
+  console.log(`Converting blocks to markdown for page: ${page.id}`)
   const raw = n2m.toMarkdownString(mdBlocks).parent
+  console.log(`Markdown conversion successful for page: ${page.id}`)
 
   const rt = readingTime(raw)
   const toc = (await extractTocHeadings(raw)) as Toc | undefined
+  console.log(`Metdata extraction (reading time, TOC) successful for page: ${page.id}`)
 
   return {
     id: page.id,

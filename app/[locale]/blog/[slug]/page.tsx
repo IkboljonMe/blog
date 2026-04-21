@@ -23,7 +23,14 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
-  return posts.map((p) => ({ slug: p.slug }))
+  const locales = ['en', 'ru', 'uz']
+
+  return locales.flatMap((locale) =>
+    posts.map((post) => ({
+      locale,
+      slug: post.slug,
+    }))
+  )
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
