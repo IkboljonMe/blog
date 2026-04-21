@@ -24,7 +24,7 @@
     "cmdk": "^0.2.0",
     "@notionhq/client": "^2.2.15",
     "notion-to-md": "^3.1.1",
-    "next-mdx-remote": "^5.0.0",
+    "next-mdx-remote": "^6.0.0",
     "esbuild": "0.18.11",
     "framer-motion": "^10.16.12",
     "github-slugger": "^1.4.0",
