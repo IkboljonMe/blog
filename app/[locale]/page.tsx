@@ -7,9 +7,10 @@ import RecentPosts from '@/components/RecentPosts'
 import { Suspense } from 'react'
 import TopTracks from '@/components/Spotify/TopTracks'
 import { allCoreContent, sortedBlogPost } from '@/lib/utils/contentlayer'
-import { allBlogs } from 'contentlayer/generated'
+import { getAllPosts } from '@/lib/notion'
 
 export default async function Page() {
+  const allBlogs = await getAllPosts()
   const sortedPosts = sortedBlogPost(allBlogs)
   const posts = allCoreContent(sortedPosts)
   return (

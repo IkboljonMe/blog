@@ -2,7 +2,7 @@ import ListLayout from '@/layouts/MDX/ListLayout'
 import MainLayout from '@/layouts/MainLayout'
 import { sortedBlogPost } from '@/lib/utils/contentlayer'
 import { POSTS_PER_PAGE } from '@/types/default'
-import { allBlogs } from 'contentlayer/generated'
+import { getAllPosts } from '@/lib/notion'
 import { redirect } from 'next/navigation'
 
 export const metadata = {
@@ -10,8 +10,9 @@ export const metadata = {
   description: 'My Blogs - Ikboljon Abdurasulov',
 }
 
-export default function BlogPage({ params }: { params: { page: string } }) {
+export default async function BlogPage({ params }: { params: { page: string } }) {
   const pageNumber = parseInt(params.page)
+  const allBlogs = await getAllPosts()
   const posts = sortedBlogPost(allBlogs)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),

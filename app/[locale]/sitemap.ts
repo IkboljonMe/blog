@@ -1,9 +1,10 @@
 import siteMetadata from 'content/siteMetadata'
-import { allBlogs } from 'contentlayer/generated'
+import { getAllPosts } from '@/lib/notion'
 import { MetadataRoute } from 'next'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = siteMetadata.siteUrl
+  const allBlogs = await getAllPosts()
   const blogRoutes = allBlogs.map((post) => ({
     url: `${siteUrl}/${post.slug}`,
     lastModified: post.lastmod || post.date,

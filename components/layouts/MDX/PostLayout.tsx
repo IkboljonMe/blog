@@ -1,8 +1,7 @@
 import PageTitle from '@/components/PageTitle'
 import PostNavigation from '@/components/PostNavigation'
-import { CoreContent } from '@/lib/utils/contentlayer'
+import type { PostCore } from '@/lib/utils/contentlayer'
 import siteMetadata from 'content/siteMetadata'
-import type { Blog } from 'contentlayer/generated'
 import { ReactNode } from 'react'
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
@@ -12,7 +11,7 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
 }
 
 interface Props {
-  content: CoreContent<Blog>
+  content: PostCore
   children: ReactNode
   next?: { slug: string; title: string }
   prev?: { slug: string; title: string }

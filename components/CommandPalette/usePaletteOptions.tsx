@@ -1,7 +1,6 @@
 'use client'
 
-import { sortedBlogPost } from '@/lib/utils/contentlayer'
-import { allBlogs } from 'contentlayer/generated'
+import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
@@ -20,10 +19,19 @@ type PaletteOption = {
   icon?: ReactNode
 }
 
+type PostLink = { slug: string; title: string }
+
 export default function usePaletteOptions() {
   const router = useRouter()
-  const sortedPosts = sortedBlogPost(allBlogs)
   const { theme, setTheme } = useTheme()
+  const [posts, setPosts] = useState<PostLink[]>([])
+
+  useEffect(() => {
+    fetch('/api/posts')
+      .then((r) => r.json())
+      .then(setPosts)
+      .catch(() => {})
+  }, [])
 
   const generalOptions: PaletteOption[] = [
     {
@@ -46,7 +54,7 @@ export default function usePaletteOptions() {
     { id: '/about', name: 'About', icon: <HiOutlineUser />, onSelect: (v) => router.push(v) },
   ]
 
-  const blogOptions: PaletteOption[] = sortedPosts.map((post) => ({
+  const blogOptions: PaletteOption[] = posts.map((post) => ({
     id: post.slug,
     name: post.title,
     onSelect: (v) => router.push(`/blog/${v}`),

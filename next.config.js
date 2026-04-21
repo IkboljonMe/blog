@@ -1,4 +1,4 @@
-const { withContentlayer } = require('next-contentlayer');
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -16,6 +16,18 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.notion.so',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.notion.so',
       },
     ],
   },
@@ -63,6 +75,6 @@ const ContentSecurityPolicy = `
 
 // Export the final configuration
 module.exports = () => {
-  const plugins = [withContentlayer, withBundleAnalyzer, withNextIntl];
+  const plugins = [withBundleAnalyzer, withNextIntl];
   return plugins.reduce((acc, next) => next(acc), nextConfig);
 };

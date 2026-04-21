@@ -3,9 +3,10 @@ import Tag from '@/components/Tag'
 import MainLayout from '@/layouts/MainLayout'
 import { getAllTags } from '@/lib/utils/contentlayer'
 import kebabCase from '@/lib/utils/kebabCase'
-import { allBlogs } from 'contentlayer/generated'
+import { getAllPosts } from '@/lib/notion'
 
-export default function Tags() {
+export default async function Tags() {
+  const allBlogs = await getAllPosts()
   const tags = getAllTags(allBlogs)
   const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a])
 

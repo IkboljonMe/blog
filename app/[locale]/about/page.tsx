@@ -1,7 +1,10 @@
-import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import AuthorLayout from '@/layouts/MDX/AuthorLayout'
 import MainLayout from '@/layouts/MainLayout'
-import { allAuthors } from 'contentlayer/generated'
+import { components } from '@/components/MDXComponents'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
 
 export const metadata = {
   title: 'About - Ikboljon Abdurasulov',
@@ -9,16 +12,14 @@ export const metadata = {
 }
 
 export default function About() {
-  const author = allAuthors.find((p) => p.slug === 'about')
-
-  if (!author) {
-    return null
-  }
+  const authorFile = path.join(process.cwd(), 'content', 'authors', 'about.mdx')
+  const raw = fs.readFileSync(authorFile, 'utf-8')
+  const { data, content } = matter(raw)
 
   return (
     <MainLayout>
-      <AuthorLayout content={author}>
-        <MDXLayoutRenderer content={author} />
+      <AuthorLayout content={data as any}>
+        <MDXRemote source={content} components={components} />
       </AuthorLayout>
     </MainLayout>
   )

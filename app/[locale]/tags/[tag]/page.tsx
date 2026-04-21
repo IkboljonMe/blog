@@ -2,15 +2,16 @@ import ListLayout from '@/layouts/MDX/ListLayout'
 import MainLayout from '@/layouts/MainLayout'
 import { allCoreContent } from '@/lib/utils/contentlayer'
 import kebabCase from '@/lib/utils/kebabCase'
-import { allBlogs } from 'contentlayer/generated'
+import { getAllPosts } from '@/lib/notion'
 
 export const metadata = {
   title: 'Blog - IkboljonMe',
   description: 'My Tags - Ikboljon Abdurasulov',
 }
 
-export default function Tag({ params }: { params: { tag: string } }) {
+export default async function Tag({ params }: { params: { tag: string } }) {
   const { tag } = params
+  const allBlogs = await getAllPosts()
   const posts = allCoreContent(
     allBlogs.filter(
       (post) => post.draft !== true && post.tags?.map((t) => kebabCase(t)).includes(tag)

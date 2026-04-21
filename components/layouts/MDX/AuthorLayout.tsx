@@ -1,10 +1,16 @@
 import Image from '@/components/Image'
-import type { Authors } from 'contentlayer/generated'
 import { ReactNode } from 'react'
+
+interface AuthorData {
+  avatar?: string
+  occupation?: string
+  company?: string
+  [key: string]: unknown
+}
 
 interface Props {
   children: ReactNode
-  content: Omit<Authors, '_id' | '_raw' | 'body'>
+  content: AuthorData
 }
 
 export default function AuthorLayout({ children, content }: Props) {

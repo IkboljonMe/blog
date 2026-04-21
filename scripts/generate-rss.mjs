@@ -3,24 +3,50 @@ import path from 'path'
 import GithubSlugger from 'github-slugger'
 import { escape } from './htmlEscaper.mjs'
 import siteMetadata from '../content/siteMetadata.js'
-import { allBlogs } from '../.contentlayer/generated/index.mjs'
 
-export async function getAllTags() {
+async function fetchAllPosts() {
+  const { Client } = await import('@notionhq/client')
+  const { NotionToMarkdown } = await import('notion-to-md')
+
+  const notion = new Client({ auth: process.env.NOTION_TOKEN })
+  const n2m = new NotionToMarkdown({ notionClient: notion })
+
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID
+  if (!databaseId) {
+    console.warn('NOTION_BLOG_DATABASE_ID is not set — skipping RSS generation.')
+    return []
+  }
+
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: { property: 'Draft', checkbox: { equals: false } },
+    sorts: [{ property: 'Date', direction: 'descending' }],
+  })
+
+  return Promise.all(
+    response.results.map(async (page) => {
+      const props = page.properties
+      const title = props['Title']?.title?.map((r) => r.plain_text).join('') ?? ''
+      const slug = props['Slug']?.rich_text?.map((r) => r.plain_text).join('') || page.id
+      const dateRaw = props['Date']?.date?.start ?? null
+      const date = dateRaw ? new Date(dateRaw).toISOString() : new Date().toISOString()
+      const summary = props['Summary']?.rich_text?.map((r) => r.plain_text).join('') || ''
+      const tags = props['Tags']?.multi_select?.map((t) => t.name) ?? []
+      return { slug, title, date, summary, tags, draft: false }
+    })
+  )
+}
+
+function getAllTags(allBlogs) {
   const tagCount = {}
-  // Iterate through each post, putting all found tags into `tags`
   allBlogs.forEach((file) => {
     if (file.tags && file.draft !== true) {
       file.tags.forEach((tag) => {
         const formattedTag = GithubSlugger.slug(tag)
-        if (formattedTag in tagCount) {
-          tagCount[formattedTag] += 1
-        } else {
-          tagCount[formattedTag] = 1
-        }
+        tagCount[formattedTag] = (tagCount[formattedTag] ?? 0) + 1
       })
     }
   })
-
   return tagCount
 }
 
@@ -53,16 +79,14 @@ const generateRss = (posts, page = 'feed.xml') => `
 `
 
 async function generate() {
-  // RSS for blog post
+  const allBlogs = await fetchAllPosts()
+
   if (allBlogs.length > 0) {
-    const rss = generateRss(allBlogs)
-    writeFileSync('./public/feed.xml', rss)
+    writeFileSync('./public/feed.xml', generateRss(allBlogs))
   }
 
-  // RSS for tags
-  // TODO: use AllTags from contentlayer when computed docs is ready
   if (allBlogs.length > 0) {
-    const tags = await getAllTags()
+    const tags = getAllTags(allBlogs)
     for (const tag of Object.keys(tags)) {
       const filteredPosts = allBlogs.filter(
         (post) => post.draft !== true && post.tags.map((t) => GithubSlugger.slug(t)).includes(tag)

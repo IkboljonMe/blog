@@ -2,14 +2,13 @@
 
 import Pagination from '@/components/Pagination'
 import PostCard from '@/components/PostCard'
-import { CoreContent } from '@/lib/utils/contentlayer'
-import type { Blog } from 'contentlayer/generated'
+import type { PostCore } from '@/lib/utils/contentlayer'
 import { ComponentProps, useState } from 'react'
 import { useTranslations } from 'next-intl'
 interface Props {
-  posts: CoreContent<Blog>[]
+  posts: PostCore[]
   title: string
-  initialDisplayPosts?: CoreContent<Blog>[]
+  initialDisplayPosts?: PostCore[]
   pagination?: ComponentProps<typeof Pagination>
 }
 

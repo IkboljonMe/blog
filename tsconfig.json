@@ -23,7 +23,7 @@
       "@/css/*": ["css/*"],
       "@/lib/*": ["lib/*"],
       "@/types/*": ["types/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "@/app/*": ["app/*"]
     },
     "plugins": [
       {
@@ -39,8 +39,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.json",
-    ".contentlayer/generated",
-    ".contentlayer/generated/**/*.json",
+
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]

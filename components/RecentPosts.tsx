@@ -1,11 +1,11 @@
 import PostCard from '@/components/PostCard'
-import { Blog } from 'contentlayer/generated'
+import type { PostCore } from '@/lib/utils/contentlayer'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 const MAX_DISPLAY = 2
 
 interface RecentPosts {
-  posts: Omit<Blog, 'body' | '_raw' | '_id'>[]
+  posts: PostCore[]
 }
 
 export default function RecentPosts({ posts }: RecentPosts) {
